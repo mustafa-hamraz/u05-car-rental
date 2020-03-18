@@ -3,7 +3,7 @@ namespace Main\Core;
 
 use Main\Controllers\CustomerController;
 use Main\Controllers\CarController;
-//use Main\Controllers\RentalController;
+use Main\Controllers\RentalController;
 use Main\Controllers\MainController;  
 
 class Router {
