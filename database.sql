@@ -32,10 +32,7 @@ CREATE TABLE rental
 CREATE TABLE history
 (
     person_number VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    phone_number VARCHAR(255) NOT NULL,
     registration_number VARCHAR(255) NOT NULL,
-    make VARCHAR(255) NOT NULL,
     rental_start_time VARCHAR(255) NOT NULL,
     rental_end_time VARCHAR(255) NOT NULL
 );
@@ -49,9 +46,9 @@ INSERT INTO cars (registration_number, make, color, year, price)
 INSERT INTO rental (person_number, registration_number, rental_start_time)
     VALUES  ("199604054495", "XYZ999", "2020-03-28 08:30:00"),
             ("200012041020", "ABC123", "2020-03-20 12:00:00");
-INSERT INTO history (person_number, name, phone_number, registration_number, make, rental_start_time, rental_end_time)
-    VALUES  ("199604054495", "Mustafa Hamraz", "0704915656", "XYZ999", "Volvo", "2020-03-18 08:30:00", "2020-03-19 10:30:00"),
-            ("200012041020", "Muji Basharmal", "0701238998", "ABC123", "Ford", "2020-03-20 12:00:00", "2020-03-22 12:00:00");
+INSERT INTO history (person_number, registration_number, rental_start_time, rental_end_time)
+    VALUES  ("199604054495", "XYZ999", "2020-03-18 08:30", "2020-03-19 10:30"),
+            ("200012041020", "ABC123", "2020-03-20 12:00", "2020-03-22 12:00");
 
 --REMOVE
 DELETE FROM rental WHERE person_number = "199604054495";

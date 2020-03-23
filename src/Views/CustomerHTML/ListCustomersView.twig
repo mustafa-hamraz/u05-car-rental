@@ -1,5 +1,18 @@
 <h1>Customer List</h1>
 
+  {% set max = list | length - 1%}
+  {% for index in 0..max %}
+    <ul>
+    <br><br>
+        <li>Person Number:    {{list[index].person_number}}</li>
+        <li>Name:             {{list[index].name}}</li>
+        <li>Address:          {{list[index].address}}</li>
+        <li>Postal Address:   {{list[index].postal_address}}</li>
+        <li>Phone Number:     {{list[index].phone_number}}</li>
+    </ul>
+  {% endfor %} 
+
+  
 <form method="post" action="/">
     <input type="submit" value="Main Menu">
 </form>
