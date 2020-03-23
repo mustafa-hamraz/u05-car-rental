@@ -1,5 +1,16 @@
 <h1>History</h1>
 
+{% set max = list | length - 1%}
+{% for index in 0..max %}
+<ul>
+<br><br>
+    <li>Person Number:           {{list[index].person_number}}</li>
+    <li>Registration Number:     {{list[index].registration_number}}</li>
+    <li>Rental Start Time:                 {{list[index].rental_start_time}}</li>
+    <li>Rental End Time:                 {{list[index].rental_end_time}}</li>
+</ul>
+{% endfor %} 
+
 <form method="post" action="/">
     <input type="submit" value="Main Menu">
 </form>

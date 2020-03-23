@@ -41,6 +41,16 @@ class Model
     $sql ='DELETE FROM customers WHERE person_number = "'.$personNumber.'";';
     $conn->exec($sql);
   }
+  
+  public function db_is_customer_renting($personNumber)
+  {
+    $conn = $this->login();
+    $sql = 'SELECT EXISTS(SELECT * FROM rental WHERE person_number="'.$personNumber.'");';
+    $statement = $conn->prepare($sql);
+    $result = $statement->execute();
+    $answer = $statement->fetch();
+    return $answer[0];
+  }
 
   //Function that checks if a customer exists in the databse and return 0 for false and 1 for true.
   public function db_exists_customer($personNumber)
@@ -123,6 +133,16 @@ class Model
     return $answer[0];
   }
 
+  public function db_return_for_edit_car($regNumber)
+  {
+    $conn = $this->login();
+    $sql = 'SELECT * FROM cars WHERE registration_number="'.$regNumber.'";';
+    $statement = $conn->prepare($sql);
+    $result = $statement->execute();
+    $answer = $statement->fetchAll();
+    return $answer;
+  }
+
   //Function that edit all information about a car based on the registration number which is primary key.
   public function db_edit_car($newRegistrationNumber, $newMake, $newColor, $newYear, $newPrice)
   {
@@ -164,18 +184,15 @@ class Model
     $conn->exec($sql);
   } 
 
-  //Function that gets all the data from rental table and return as map ($answer).
-  public function db_list_rental()
+  public function db_exists_rental($registrationNumber)
   {
     $conn = $this->login();
-    $sql = 'SELECT * FROM rental;';
-
+    $sql = 'SELECT EXISTS(SELECT * FROM rental WHERE registration_number="'.$registrationNumber.'");';
     $statement = $conn->prepare($sql);
     $result = $statement->execute();
-    $answer = $statement->fetchAll();
-    return $answer;
+    $answer = $statement->fetch();
+    return $answer[0];
   }
-
   //Function that end rental based on registration number. Delete the data from rental tabel. Insert the end rental to hisroy.
   public function db_end_rental($registrationNumber)
   {
@@ -194,6 +211,32 @@ class Model
     $history_sql = 'INSERT INTO history (person_number, registration_number, rental_start_time, rental_end_time)
     VALUES  ("'. $personNumber .'", "'. $registrationNumber .'", "'. $rentalStartTime .'", "'. $rentalEndTime .'");';
     $conn->exec($history_sql);
+  }
+
+
+  //Function that gets all the data from rental table and return as map ($answer).
+  public function db_list_rental()
+  {
+    $conn = $this->login();
+    $sql = 'SELECT * FROM rental;';
+
+    $statement = $conn->prepare($sql);
+    $result = $statement->execute();
+    $answer = $statement->fetchAll();
+    return $answer;
+  }
+
+  
+  //Function that gets all the data from rental table and return as map ($answer).
+  public function db_list_history()
+  {
+    $conn = $this->login();
+    $sql = 'SELECT * FROM history;';
+
+    $statement = $conn->prepare($sql);
+    $result = $statement->execute();
+    $answer = $statement->fetchAll();
+    return $answer;
   }
 
 

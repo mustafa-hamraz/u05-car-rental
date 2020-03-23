@@ -1,5 +1,17 @@
 <h1>Car List</h1>
 
+  {% set max = list | length - 1%}
+  {% for index in 0..max %}
+    <ul>
+    <br><br>
+        <li>Registration Number:    {{list[index].registration_number}}</li>
+        <li>Make:                   {{list[index].make}}</li>
+        <li>Color:                  {{list[index].color}}</li>
+        <li>Year:                   {{list[index].year}}</li>
+        <li>Price /hour:            {{list[index].price}}</li>
+    </ul>
+  {% endfor %} 
+
 <form method="post" action="/">
     <input type="submit" value="Main Menu">
 </form>

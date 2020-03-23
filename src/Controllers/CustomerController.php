@@ -15,6 +15,14 @@ class CustomerController {
   public function customerAdded($twig) 
   {
     $model = new Model();
+    $exists = $model->db_exists_customer($_POST["add-person-number"]);
+    if(!$exists==0)
+    {
+      return '<h1>Error! Customer Already Exists!</h1>
+              <form method="post" action="/">
+              <input type="submit" value="Main Menu">
+              </form>';
+    }
     $model->db_add_customer(
       $_POST["add-person-number"],
       $_POST["add-name"],
@@ -38,7 +46,16 @@ class CustomerController {
     $exists = $model->db_exists_customer($_POST["remove-person-number"]);
     if(!$exists==1)
     {
-      return '<h1>Customer Does Not Exsits!</h1>
+      return '<h1>Error! Customer Does Not Exsits!</h1>
+              <form method="post" action="/">
+              <input type="submit" value="Main Menu">
+              </form>';
+    }
+
+    $isRenting = $model->db_is_customer_renting($_POST["remove-person-number"]);
+    if(!$exists==0)
+    {
+      return '<h1>Error! Can not remove.  Customer currently renting a car</h1><p>
               <form method="post" action="/">
               <input type="submit" value="Main Menu">
               </form>';
