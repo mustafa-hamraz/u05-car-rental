@@ -148,28 +148,5 @@ class Router {
         $controller = new MainController();
         return $controller->mainMenu($twig);
       }
-
-         /*($path == "/listAll") {
-          $controller = new ListController();
-          $htmlCode = $controller->listAll($twig);
-          return $htmlCode;
-        }
-        else if ($path == "/inputIndex") {
-          $controller = new InputController();
-          return $controller->inputIndex($twig);
-        }
-        else if ($path == "/listIndex") {
-          $controller = new ListController();
-          $firstIndex = $form["firstIndex"];
-          $lastIndex = $form["lastIndex"];
-          return $controller->listIndex($twig, $firstIndex, $lastIndex);
-        }
-        else if ($path == "/") {
-          $controller = new MainController();
-          return $controller->mainMenu($twig);
-        }
-        else {
-          return "Router Error!";
-        }*/
     }
   }
